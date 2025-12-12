@@ -1,0 +1,876 @@
+/* ==================== БАЗОВЫЕ ПЕРЕМЕННЫЕ ==================== */
+
+:root {
+    --bg-dark: #000000;
+    --border-color: #333;
+    --text-light: #ffffff;
+    --text-muted: #aaaaaa;
+    --aspect-ratio: 16 / 9;
+}
+
+/* ==================== ОБЩИЕ СТИЛИ ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==================== ОСНОВНАЯ ИГРОВАЯ ОБЛАСТЬ ==================== */
+
+.game-wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    /* Ensure 16:9 aspect ratio constraint */
+    max-width: calc(100vh * 16 / 9);
+    max-height: calc(100vw * 9 / 16);
+    margin: 0 auto;
+}
+
+/* ==================== СТАРТОВЫЙ ЭКРАН ==================== */
+
+.start-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ссылки в правом верхнем углу */
+.start-top-links {
+    position: absolute;
+    top: min(3vh, 3vw);
+    right: min(3vw, 3vh);
+    z-index: 20;
+    display: flex;
+    gap: min(2vw, 2vh);
+    flex-direction: row;
+}
+
+.top-link {
+    color: #888888;
+    text-decoration: underline;
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    text-transform: lowercase;
+    transition: opacity 0.3s ease;
+}
+
+.top-link:hover {
+    opacity: 0.7;
+    color: #aaaaaa;
+}
+
+/* Коллаж изображений */
+.start-collage-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.collage-img {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Позиционирование изображений в коллаже - очень хаотичное расположение, увеличенные размеры */
+/* Избегаем правого верхнего угла для кнопок "авторы" и "узнать о мире" */
+.collage-img-1 {
+    /* Верхний левый - средний размер */
+    top: -2%;
+    left: -4%;
+    width: 24%;
+    height: 17%;
+    background-image: url('images/scenes/6.jpg');
+    z-index: 2;
+}
+
+.collage-img-2 {
+    /* Верхний центр - крупное квадратное */
+    top: 2%;
+    left: 35%;
+    width: 20%;
+    height: 20%;
+    background-image: url('images/scenes/17.jpg');
+    z-index: 5;
+}
+
+.collage-img-3 {
+    /* Верхний правый - маленькое квадратное, но ниже кнопок */
+    top: 12%;
+    right: -2%;
+    width: 13%;
+    height: 13%;
+    background-image: url('images/scenes/22.jpg');
+    z-index: 1;
+}
+
+.collage-img-4 {
+    /* Средний правый - крупное вертикальное, ниже кнопок */
+    top: 22%;
+    right: -5%;
+    width: 18%;
+    height: 33%;
+    background-image: url('images/scenes/13.jpg');
+    z-index: 4;
+}
+
+.collage-img-5 {
+    /* Средний левый - среднее вертикальное */
+    top: 28%;
+    left: -5%;
+    width: 17%;
+    height: 26%;
+    background-image: url('images/scenes/8.jpg');
+    z-index: 3;
+}
+
+.collage-img-6 {
+    /* Нижний левый - крупное горизонтальное */
+    bottom: 5%;
+    left: -6%;
+    width: 26%;
+    height: 15%;
+    background-image: url('images/scenes/27.jpg');
+    z-index: 2;
+}
+
+.collage-img-7 {
+    /* Нижний центр-правый - среднее горизонтальное */
+    bottom: 8%;
+    right: 12%;
+    width: 22%;
+    height: 14%;
+    background-image: url('images/scenes/24.jpg');
+    z-index: 1;
+}
+
+.collage-img-8 {
+    /* Нижний правый - маленькое квадратное */
+    bottom: 3%;
+    right: -1%;
+    width: 15%;
+    height: 15%;
+    background-image: url('images/scenes/21.jpg');
+    z-index: 6;
+}
+
+/* Центральный контент */
+.start-content {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    padding: min(4vh, 4vw);
+}
+
+.start-title {
+    font-size: clamp(56px, 7vw, 120px);
+    margin-bottom: min(1.5vh, 1.5vw);
+    color: #ffffff;
+    font-weight: 400;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.1;
+}
+
+.start-subtitle {
+    font-size: clamp(16px, 2vw, 24px);
+    margin-bottom: min(8vh, 8vw);
+    color: #888888;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    font-style: normal;
+    line-height: 1.4;
+}
+
+.start-button-main {
+    display: inline-block;
+    padding: min(2vh, 2vw) min(5vw, 5vh);
+    min-width: 380px;
+    font-size: clamp(18px, 2.2vw, 28px);
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.start-button-main:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* ==================== СЦЕНЫ ==================== */
+
+/* Контейнер всей сцены */
+.scene-block {
+    width: 100%;
+    height: 100%;
+    padding: min(2vw, 2vh);
+
+    display: flex;
+    flex-direction: row;
+
+    /* ключевой фикс — флекс-адаптация */
+    justify-content: space-between;
+    align-items: flex-start;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    overflow: hidden; /* чтобы ничего не вылезало */
+    cursor: pointer; /* Показываем, что можно кликнуть */
+}
+
+.scene-block.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================== ЛЕВАЯ ТЕКСТОВАЯ ЧАСТЬ ==================== */
+
+.scene-text-side {
+    width: 33%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* <-- ТЕКСТ ВСЕГДА СВЕРХУ */
+    overflow: hidden;
+    padding-right: min(1vw, 1vh);
+    pointer-events: auto; /* Разрешаем клики */
+}
+
+.scene-text {
+    font-size: clamp(14px, 1.5vw, 22px);
+    line-height: 1.45;
+    opacity: 0;
+    justify-content: flex-start;
+    animation: fadeInText 1s ease forwards;
+    max-height: 100%;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.scene-text p {
+    margin-bottom: 1em;
+    text-indent: 1.5em;
+}
+
+.scene-text p:first-child {
+    margin-top: 0;
+}
+
+.scene-text p:last-child {
+    margin-bottom: 0;
+}
+
+.scene-text.memory-button {
+    display: inline-block;
+    padding: min(1.5vh, 1.5vw) min(3vw, 3vh);
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-top: min(2vh, 2vw);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.scene-text.memory-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(0, 0, 0, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 
+                0 0 15px rgba(0, 0, 0, 0.6),
+                inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+/* ==================== ПРАВАЯ КАРТИНКА ==================== */
+
+.scene-image-side {
+    width: 67%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-left: min(1vw, 1vh);
+    pointer-events: auto; /* Разрешаем клики */
+}
+
+.scene-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    aspect-ratio: 3/4;
+    height: auto;
+}
+
+/* ==================== КНОПКИ (используются только для "попытаться вспомнить") ==================== */
+
+.memory-btn {
+    background: none;
+    border: none;
+    color: transparent;
+    width: 0;
+    height: 0;
+    padding: 0;
+}
+
+/* ==================== МИНИ-ИГРА ==================== */
+
+#matching-container {
+    width: 100%;
+    height: 100%;
+    padding: min(2vw, 2vh);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.matching-header {
+    text-align: center;
+    margin-bottom: min(1.5vh, 1.5vw);
+    flex-shrink: 0;
+}
+
+.matching-header h2 {
+    font-size: clamp(18px, 2vw, 32px);
+}
+
+.matching-header p {
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.score-counter {
+    margin-top: 15px;
+    font-size: 20px;
+    padding: 6px 14px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.matching-content {
+    display: flex;
+    gap: min(2.5vw, 2.5vh);
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ЛЕВАЯ КАРТИНКА */
+
+.left-image-container {
+    width: 33%;
+    max-width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+.left-image {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: contain;
+    border-radius: 6px;
+    border: none;
+    height: auto;
+}
+
+/* ПРАВЫЕ ВАРИАНТЫ 2×2 */
+
+.right-options-container {
+    width: 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    flex-shrink: 0;
+}
+
+.image-label {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: min(1vh, 1vw);
+    font-size: clamp(12px, 1.2vw, 18px);
+}
+
+.right-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2x2 */
+    grid-template-rows: 1fr 1fr;
+    gap: min(1.5vw, 1.5vh);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    flex: 1;
+}
+
+.option-card {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: 0.25s;
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+}
+
+.option-card:hover {
+    transform: scale(1.04);
+    border-color: #66ff66;
+}
+
+.option-card.selected {
+    border-color: #66ff66;
+}
+
+.option-card.wrong {
+    border-color: #ff4444;
+}
+
+.option-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* важно: теперь картинка принимает форму ячейки */
+    aspect-ratio: 3/4;
+}
+
+/* ==================== СООБЩЕНИЕ ОБ ОШИБКЕ (iPhone стиль) ==================== */
+
+.error-message {
+    position: fixed;
+    bottom: min(3vh, 3vw);
+    right: min(2.5vw, 2.5vh);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 0;
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: #fff;
+    animation: slideInFromRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1000;
+    max-width: min(320px, calc(100vw - min(5vw, 5vh)));
+    min-width: 280px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+                0 0 0 0.5px rgba(255, 255, 255, 0.1) inset;
+    overflow: hidden;
+}
+
+.error-header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: min(1.5vh, 1.5vw) min(2vw, 2vh);
+    font-weight: 600;
+    font-size: clamp(15px, 1.6vw, 19px);
+    letter-spacing: -0.3px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.error-body {
+    padding: min(2vh, 2vw) min(2vw, 2vh);
+    line-height: 1.5;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInFromRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(100%) scale(0.9); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0) scale(1); 
+    }
+}
+
+/* ==================== ФИНАЛЬНАЯ СЦЕНА ==================== */
+
+#final-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: min(2vw, 2vh);
+}
+
+#final-container .next-button {
+    visibility: visible !important;
+    display: inline-block !important;
+    opacity: 1 !important;
+}
+
+.final-image-container {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.final-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.final-text-container {
+    flex-shrink: 0;
+    padding: min(2vh, 2vw) 0;
+    text-align: center;
+    max-height: 50%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: min(1vh, 1vw);
+    min-height: fit-content;
+}
+
+.final-text {
+    font-size: clamp(16px, 1.8vw, 24px);
+    line-height: 1.6;
+    margin-bottom: min(1vh, 1vw);
+    word-wrap: break-word;
+    max-height: 60%;
+    overflow-y: auto;
+    flex-shrink: 1;
+}
+
+.final-text p {
+    margin-bottom: 1em;
+    text-indent: 1.5em;
+}
+
+.final-text p:first-child {
+    margin-top: 0;
+}
+
+.final-text p:last-child {
+    margin-bottom: 0;
+}
+
+.next-button {
+    display: inline-block;
+    padding: min(1.5vh, 1.5vw) min(3vw, 3vh);
+    margin: min(0.5vh, 0.5vw) min(1vw, 1vh);
+    font-size: clamp(14px, 1.5vw, 20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-light);
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.25s;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.next-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #66ff66;
+}
+
+.about-button {
+    display: inline-block;
+}
+
+/* ==================== АДАПТИВ ==================== */
+
+@media (max-width: 1100px) {
+    .scene-text-side { width: 40%; }
+    .scene-image-side { width: 60%; }
+}
+
+@media (max-width: 850px) {
+    .matching-content {
+        flex-direction: column;
+        gap: min(2vh, 2vw);
+    }
+
+    .left-image-container,
+    .right-options-container {
+        width: 90%;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    .start-top-links {
+        top: min(2vh, 2vw);
+        right: min(2vw, 2vh);
+        gap: min(1.5vw, 1.5vh);
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .top-link {
+        font-size: clamp(12px, 2.5vw, 16px);
+    }
+
+    .collage-img {
+        opacity: 0.5;
+    }
+
+    .collage-img-1 {
+        width: 15%;
+        height: 10%;
+    }
+
+    .collage-img-2 {
+        width: 10%;
+        height: 10%;
+    }
+
+    .collage-img-3 {
+        width: 6%;
+        height: 6%;
+    }
+
+    .collage-img-4 {
+        width: 8%;
+        height: 15%;
+    }
+
+    .collage-img-5 {
+        width: 9%;
+        height: 14%;
+    }
+
+    .collage-img-6 {
+        width: 13%;
+        height: 8%;
+    }
+
+    .collage-img-7 {
+        width: 12%;
+        height: 7%;
+    }
+
+    .collage-img-8 {
+        width: 7%;
+        height: 7%;
+    }
+
+    .start-title {
+        font-size: clamp(36px, 8vw, 64px);
+        letter-spacing: 3px;
+    }
+
+    .start-subtitle {
+        font-size: clamp(14px, 3vw, 20px);
+        margin-bottom: min(3vh, 3vw);
+    }
+
+    .start-button-main {
+        min-width: 280px;
+        font-size: clamp(14px, 3vw, 20px);
+        padding: min(1.8vh, 1.8vw) min(4vw, 4vh);
+        letter-spacing: 1.5px;
+    }
+
+    .scene-block {
+        flex-direction: column;
+        padding: min(2vh, 2vw);
+    }
+
+    .scene-text-side,
+    .scene-image-side {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+
+    .scene-text-side {
+        order: 2;
+        max-height: 50%;
+    }
+
+    .scene-image-side {
+        order: 1;
+        max-height: 50%;
+    }
+}
+
+/* Мини-игра: компактный интерфейс */
+#matching-title {
+    font-size: clamp(18px, 2vw, 26px);
+    margin-bottom: min(2vh, 2vw);
+    text-align: center;
+}
+
+/* ==================== ИНФОРМАЦИОННЫЕ СТРАНИЦЫ ==================== */
+
+.info-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: min(2vw, 2vh);
+    gap: min(2vw, 2vh);
+    overflow: hidden;
+}
+
+.info-image-container {
+    width: 50%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.info-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.info-text-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: min(2vw, 2vh);
+    overflow-y: auto;
+}
+
+.info-title {
+    font-size: clamp(28px, 3vw, 48px);
+    margin-bottom: min(3vh, 3vw);
+    color: var(--text-light);
+    font-weight: 300;
+}
+
+.info-text {
+    font-size: clamp(16px, 1.8vw, 22px);
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: min(3vh, 3vw);
+}
+
+.info-text p {
+    margin-bottom: min(2vh, 2vw);
+}
+
+.info-text strong {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.telegram-link {
+    color: #888888;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-top: 0.3em;
+}
+
+.telegram-link:hover {
+    color: var(--text-light);
+}
+
+.info-back-button {
+    display: inline-block;
+    padding: min(1.5vh, 1.5vw) min(3vw, 3vh);
+    font-size: clamp(16px, 1.8vw, 20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    align-self: flex-start;
+}
+
+.info-back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #66ff66;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 255, 102, 0.3);
+}
+
+@media (max-width: 700px) {
+    .info-page {
+        flex-direction: column;
+    }
+
+    .info-image-container,
+    .info-text-container {
+        width: 100%;
+    }
+
+    .info-image-container {
+        max-height: 50%;
+    }
+}

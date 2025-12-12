@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>остров памяти</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="game-wrapper">
+
+    <!-- =======================  START SCREEN  ======================= -->
+    <div id="start-screen" class="start-screen">
+        <div class="start-top-links">
+            <a href="about.html" class="top-link">авторы</a>
+            <a href="https://github.com/ilyamoussatkine/odysseyofthefuture" target="_blank" class="top-link">узнать о мире</a>
+        </div>
+        
+        <div class="start-collage-images">
+            <div class="collage-img collage-img-1"></div>
+            <div class="collage-img collage-img-2"></div>
+            <div class="collage-img collage-img-3"></div>
+            <div class="collage-img collage-img-4"></div>
+            <div class="collage-img collage-img-5"></div>
+            <div class="collage-img collage-img-6"></div>
+            <div class="collage-img collage-img-7"></div>
+            <div class="collage-img collage-img-8"></div>
+        </div>
+        
+        <div class="start-content">
+            <h1 class="start-title">ОСТРОВ ПАМЯТИ</h1>
+            <p class="start-subtitle">ты уже был здесь.</p>
+            <button id="start-story-btn" class="start-button-main">ВСПОМНИТЬ ИСТОРИЮ</button>
+        </div>
+    </div>
+
+    <!-- =======================  STORY (27 SCENES)  ======================= -->
+    <div id="story-wrapper" class="hidden">
+        <div id="scene" class="scene-block">
+            
+            <div class="scene-text-side">
+                <div id="scene-text" class="scene-text"></div>
+            </div>
+
+            <div class="scene-image-side">
+                <img id="scene-image" class="scene-image" src="">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =======================  MATCHING GAME (3 MINI-GAMES)  ======================= -->
+    <div id="matching-container" class="scene hidden">
+        <div class="matching-header">
+            <h2 id="matching-title">Выберите дом, изображённый слева</h2>
+        </div>
+
+        <div class="matching-content">
+            <div class="left-image-container">
+                <img id="left-image" class="left-image">
+            </div>
+
+            <div class="right-options-container">
+                <div id="right-options" class="right-options"></div>
+            </div>
+        </div>
+
+        <div id="error-message" class="error-message hidden">
+            <div class="error-header">Ошибка</div>
+            <div class="error-body">Ты точно хочешь вспомнить все или нет?</div>
+        </div>
+    </div>
+
+
+    <!-- =======================  FINAL SCENE  ======================= -->
+    <div id="final-container" class="scene hidden">
+        <div class="final-image-container">
+            <div class="final-image" id="final-bg"></div>
+        </div>
+
+        <div class="final-text-container">
+            <div class="final-text" id="final-text"></div>
+            <button class="next-button" id="final-restart-btn">Пройти игру ещё раз</button>
+            <a class="next-button about-button" href="about.html" target="_blank">Об авторах</a>
+            <a class="next-button" href="index.html">Вернуться на главную</a>
+        </div>
+    </div>
+
+</div> <!-- game wrapper -->
+
+<!-- =======================  AUDIO PLAYER  ======================= -->
+<audio id="background-music" loop>
+    <source src="audio/doc_2025-12-09_00-40-38.diedlonely - avenoir.mp3" type="audio/mpeg">
+    <source src="audio/doc_2025-12-09_00-40-38.diedlonely - avenoir.ogg" type="audio/ogg">
+    <source src="audio/doc_2025-12-09_00-40-38.diedlonely - avenoir.wav" type="audio/wav">
+</audio>
+
+<script src="game.js"></script>
+
+</body>
+</html>
